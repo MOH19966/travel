@@ -93,8 +93,8 @@
                          class="btn btn-primary"
                           href="login"
                            role="button">Sign in</a>
-                    </div>
-                            
+                </div>
+
 
 
 

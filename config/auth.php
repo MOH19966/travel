@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
         ],
@@ -111,7 +111,7 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
-
+    /*  هون بشان زيد زمن الجلسة بدون ما يطلب كلمة السر مرة تانية*/
     'password_timeout' => 10800,
 
 ];

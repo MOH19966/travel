@@ -11,11 +11,15 @@ class SubjectController extends Controller
     public function create()
     {
 
-        $u = auth()->user()->info;
-        $x = auth()->user()->suggestedSubjects($u);
+        $u = curr_user()->info;
+        //return all subjects that the user can teach according to his years
+        $subjects = curr_user()->suggestedSubjects($u);
         //dd($x);
 
-        return view('subject.create', ['subjects' => $x, 'id' => auth()->user()]);
+        return view('subject.create',
+         [
+             'subjects' => $subjects
+          ]);
     }
 
     public function store($request)
@@ -28,7 +32,8 @@ class SubjectController extends Controller
         name="subject[{{$s->id}}]" id="{{$s->id}}"
          */
         curr_user()->addSubject(request()->input('subject'));
-        return redirect()->route('InfoComplete',curr_user_id());
+        return redirect()
+        ->route('InfoComplete');
 
     }
 }

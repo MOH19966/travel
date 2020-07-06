@@ -59,7 +59,7 @@
 
       @endforeach
       </select>
-     
+
     </div>
   </div>
 
@@ -85,8 +85,11 @@
     <div>
       <select id="state" name="state" class="custom-select">
         <option value="rabbit">Rabbit</option>
-        <option value="duck">Duck</option>
-        <option value="fish">Fish</option>
+        @foreach ($states as $s)
+        <option value="{{$s->name}}" >{{ $s->name}} </option>
+
+        @endforeach
+
       </select>
     </div>
   </div>
@@ -95,21 +98,40 @@
     <div>
       <select id="city" name="city" required="required" class="custom-select">
         <option value="rabbit">Rabbit</option>
-        <option value="duck">Duck</option>
-        <option value="fish">Fish</option>
+         @foreach ($cities as $c)
+        <option value="{{$c->name}}" >{{ $c->name}} </option>
+
+        @endforeach
       </select>
     </div>
   </div>
+    <!--Areas-->
+  <div class="form-group">
+    <label for="area">Area</label>
+    <div>
+      <select id="area" name="area" class="custom-select">
+        <option value="rabbit">Rabbit</option>
+         @foreach ($areas as $a)
+        <option value="{{$a->name}}" >{{ $a->name}} </option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+
+  <!-- villages-->
   <div class="form-group">
     <label for="village">village</label>
     <div>
       <select id="village" name="village" class="custom-select">
         <option value="rabbit">Rabbit</option>
-        <option value="duck">Duck</option>
-        <option value="fish">Fish</option>
+         @foreach ($villages as $v)
+        <option value="{{$v->name}}" >{{ $v->name}} </option>
+        @endforeach
       </select>
     </div>
   </div>
+
+
   <div class="form-group">
     <label>gender</label>
     <div>

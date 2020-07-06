@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+
 });
 
 //add by me
@@ -38,4 +39,9 @@ Route::group(['middleware' => 'api'], function () {
         return Village::all()->get();
     });
 
+});
+
+Route::prefix('/user')->group( function(){
+
+    Route::get('/login','api\LoginController@login');
 });

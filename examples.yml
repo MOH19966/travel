@@ -1,0 +1,54 @@
+send: ReviewNotification to:post.author with:post
+models:
+  Post:
+    user_id: id foreign
+    can: string:50
+    need: string:50
+    closed : boolean
+    published_at: nullable timestamp
+    relationships:
+      hasMany: Comment
+
+  Comment:
+    user_id: id foreign
+    post_id: id foreign
+    content: longtext
+    bestAnswer: boolean
+    published_at: nullable timestamp
+
+
+controllers :
+   Post:
+    index:
+      query: all:posts
+      render: post.index with:posts
+    create:
+      render: post.create
+    store:
+      validate: can, need
+      save: post
+      flash: post.id
+      redirect: post.index
+    show:
+      query: all:comments where:post.id
+      render: post.show with:post,comments
+    edit:
+      render: post.edit with:post
+    update:
+      validate: post
+      update: post
+      flash: post.id
+      redirect: post.index
+    destroy:
+      delete: post
+      redirect: post.index
+    chooseBestComment:
+      find: comment.id
+      render: post.show with:post,comments
+
+
+
+
+
+
+

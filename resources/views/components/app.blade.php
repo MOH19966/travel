@@ -58,8 +58,12 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                           <!-- asset(curr_user()->info->college_card_image -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <!-- img by me-->     <img src="https://i.pravatar.cc/35?u={{Auth()->user()->id}}" class=" rounded-circle"  alt="image">
+                                <!-- img by me-->
+                                                      <img  src="{{is_null(curr_user()->info->college_card_image)? 'https://i.pravatar.cc/35?u='.curr_user_id() : asset('storage/'.curr_user()->info->college_card_image) }}" alt="my photo"
+                                                       class="rounded-circle img-fluid" width="50" height="60">
+
 
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -84,6 +88,8 @@
                 </div>
             </div>
         </nav>
+        <!--- flash-message laravel 7 -->
+        @include('flash-message')
 
         <main class="py-4">
             {{$slot}}
@@ -92,6 +98,6 @@
 
 
 
-    @stack('bodyScripts')
+
 </body>
 </html>

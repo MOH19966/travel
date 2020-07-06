@@ -100,6 +100,8 @@
       </select>
     </div>
   </div>
+
+  <!-- City -->
   <div class="form-group">
     <label for="city">city</label>
     <div>
@@ -110,6 +112,20 @@
       </select>
     </div>
   </div>
+
+   <div class="form-group">
+    <label for="area">Area</label>
+    <div>
+      <select id="area" name="area" class="custom-select">
+        <option value="rabbit">Rabbit</option>
+         @foreach ($areas as $a)
+        <option value="{{$a->name}}" >{{ $a->name}} </option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+
+
   <div class="form-group">
     <label for="village">village</label>
     <div>

@@ -10,17 +10,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts-->
-    <script src="{ asset('js/app.js') }}" defer></script>
+    <script src="{{  asset('js/app.js')  }}" defer></script>
     <script src="{{ asset('js/a.js') }}"  type="text/javascript"></script>
 
 
      <!-- Scripts add by me -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-    <!-- Fonts -->
+    <!-- Fonts              disabeled them-->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+ <!--  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet"> -->
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

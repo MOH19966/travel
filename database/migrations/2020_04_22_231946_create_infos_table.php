@@ -21,6 +21,9 @@ class CreateInfosTable extends Migration
             $table->enum('year', ['1','2','3','4','5','6','7' ]); // 7 id graduate
             $table->string('state');
             $table->string('city');
+            $table->string('area');
+
+
             $table->string('village');// هون بدي اربطها بالنواحي والقرى بحيث انا حددلو شو يسجل
             $table->enum('gender',['male','female']);
             $table->string('user_image')->nullable();

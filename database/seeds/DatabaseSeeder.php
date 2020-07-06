@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
         factory(Village::class)->create();
         factory(Material::class)->create();
         factory(School::class)->create();
-
         factory(Grade::class)->create();
 
 

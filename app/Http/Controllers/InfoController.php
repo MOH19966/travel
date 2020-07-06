@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Info;
 use App\User;
+use App\State;
+use App\Area;
+use App\City;
+use App\Village;
+
 use App\College;
 use App\University;
 use Illuminate\Http\Request;
@@ -14,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InfoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +46,12 @@ class InfoController extends Controller
                 'universities' => University::all(),
                 'colleges' => College::all(),
                 'years' => [1, 2, 3, 4, 5, 6, 7],
+                'states'=> State::all(),
+                'cities'=> City::all(),
+                'areas'=>Area::all(),
+                'villages'=>Village::all(),
+
+
             ]);
     }
     /**
@@ -80,6 +92,8 @@ class InfoController extends Controller
     {
         //
         $PI = Info::where('user_id', $id)->first();
+
+      
         $rating = User::findOrFail($id)->first()->averageRating;
 
        return view('info.show', compact(['PI', 'rating']));
@@ -95,10 +109,14 @@ class InfoController extends Controller
     {
        return view('info.edit',
     [ // vars sent to view
-        'id' => auth()->user(),
+        'id' => curr_user(),
         'universities' => University::all(),
         'colleges' => College::all(),
         'years' => [1, 2, 3, 4, 5, 6, 7],
+        'states'=> State::all(),
+        'cities'=> City::all(),
+        'areas'=>Area::all(),
+        'villages'=>Village::all(),
         'info'=> Info::where('user_id', $id)->first(), // wrong
     ]);
 
@@ -117,7 +135,7 @@ class InfoController extends Controller
 
         //dd($request);
             info::Where('user_id', curr_user_id())->update($this->validatedAttributes());
-                       // dd('ddd');
+                       //dd('ddd');
                  return redirect()->route('info.profile', ['id' => $id]);
 
 
@@ -146,6 +164,7 @@ class InfoController extends Controller
 
 
             'state' => 'required',
+            'area' => 'required',
             'village' => 'required', //nullable
             'city' => 'required',
             'year' => 'required',
@@ -180,11 +199,10 @@ class InfoController extends Controller
   //  /request()->user()->notify(new RateTeacher($teacher_id, $teacher_full_name));
 
     }
+
     public function uploadImages()
     {
-        return view('info.uploadImages',[
-            'id'=>curr_user_id(),
-        ]);
+        return view('info.uploadImages');
 
 
     }
@@ -202,20 +220,22 @@ class InfoController extends Controller
 
     );
            $collegeCard= request('collegePhoto')->storeAs('CollegeCards', curr_user_id());
-           $personalPhoto = request('personalPhoto')->store('PersonalPhotos');
+           $personalPhoto = request('personalPhoto')->storeAs('PersonalPhotos',curr_user_id());
 
            $info=Info::Where('user_id',curr_user_id())->first();
+           // dd($info);
            if(is_null($info->college_card_image))
            {
                $info->college_card_image=$collegeCard;
            }
+
            if(is_null($info->user_image))
            {
                $info->user_image = $personalPhoto;
            }
            $info->save();
 
-          // dd($info);
+         // dd($info);
 
           return redirect()->route('home');
     }

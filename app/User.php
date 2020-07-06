@@ -8,10 +8,15 @@ use willvincent\Rateable\Rateable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\MaterialTrait;
-class User extends Authenticatable
+use Laravel\Passport\HasApiTokens;
+
+
+class User extends \TCG\Voyager\Models\User
 {
     use Notifiable ,SubjectTrait , MaterialTrait  ;
     use Rateable;
+    // for passport
+    use  HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -42,35 +47,36 @@ class User extends Authenticatable
 
         return $this->hasOne(Info::class);
     }
-    //get all roles which the user have
-    public function roles()
-    {
 
-        return $this->belongsToMany(Role::class);
+   // get all roles which the user have
+    // public function roles()
+    // {
 
-    }
+    //     return $this->belongsToMany(Role::class);
 
-    // add role to roles whish the already have and accept string
-    public function assignRole($role)
-    {
-        if (is_string($role)) {
-            $role = Role::whereName($role)->firstOrFail();
+    // }
 
-        }
-        return $this->roles()->sync($role, false);
+    // // add role to roles whish the already have and accept string
+    // public function assignRole($role)
+    // {
+    //     if (is_string($role)) {
+    //         $role = Role::whereName($role)->firstOrFail();
 
-    }
+    //     }
+    //     return $this->roles()->sync($role, false);
 
-    public function abilities()
-    {
+    // }
 
-        return $this->roles()->map->abilities()
-            ->flatten()
-            ->pluck('name')->unique();
+    // public function abilities()
+    // {
 
-    }
+    //     return $this->roles()->map->abilities()
+    //         ->flatten()
+    //         ->pluck('name')->unique();
 
-   /*  public function getInfoCompletedAttribute()
+    // }
+
+     public function getInfoCompletedAttribute()
      {
 
         return $this->info_completed;
@@ -80,6 +86,6 @@ class User extends Authenticatable
 
         return $this->info_completed=$x;
      }
-      */
+
 
 }

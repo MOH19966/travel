@@ -19,7 +19,7 @@
 
                                    @auth
 
-                    <div ><h1><a href="{{route('sub.select' , auth()->user())}}">تدريس طلاب جامعة</a></h1></div>
+                    <div ><h1><a href="{{route('sub.select') }}">تدريس طلاب جامعة</a></h1></div>
                     <div><h1><a href="{{route('sub.request' , auth()->user())}}">طلب أستاذ لمادة</a></h1></div>
                     <div><h1><a href="{{route('material.select')}}"> التدريس في مدارس حكومية </a></h1></div>
 

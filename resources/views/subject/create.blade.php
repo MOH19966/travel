@@ -4,7 +4,7 @@
 
                     <h1>selelct subjects to teach</h1>
 
-<form action="{{route('sub.store',['id'=> curr_user_id()])}}" method="post">
+<form action="{{route('sub.store')}}" method="post">
     @csrf
 
 

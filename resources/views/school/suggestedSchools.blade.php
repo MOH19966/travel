@@ -15,7 +15,7 @@
   <b>{{$s->material_name}}</b>
   <p class="mb-0">{{$s->grade_name}} </p>
   <a name="" id="" class="btn btn-primary" href="#" role="button">enroll</a>
-  
+ 
 
 @endforeach
 

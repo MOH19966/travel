@@ -99,6 +99,7 @@ class ShortageController extends Controller
 
 
         $request->session()->flash('shortage.id', $shortage->id);
+        $request->session()->flash('success', 'عشت يا أبو علي');
 
         return redirect()->route('shortage.index');
     }

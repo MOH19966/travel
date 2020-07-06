@@ -5,7 +5,7 @@
 
         <ul>
 
-                <li>Image <img src="{{is_null($PI->college_card_image)? 'https://i.pravatar.cc/35?u='.curr_user_id() : asset('storage/'.$PI->college_card_image) }}"
+                <li>Image <img src="{{is_null($PI->college_card_image)? 'https://i.pravatar.cc/35?u='.curr_user_id() : asset('storage/'.$PI->user_image) }}"
                     alt="" srcset="" width="60" height="40" ></li>
                 <li>Name: {{$PI->full_name}}</li>
                 <li>university:{{$PI->university}}</li>
