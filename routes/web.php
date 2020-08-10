@@ -13,30 +13,31 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::prefix('admin')->group(function () {
-    Route::get('users', function () {
-        // Matches The "/admin/users" URL
-    });
+//faded with smoke
+ Route::get('/test', function () {
+    return view('test');
 });
+
+//ANIMATED BG
+Route::get('/test1', function () {
+    return view('test1');
+});
+
+
+Route::group(['prefix' => 'admin'], function () { Voyager::routes(); });
+
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/s', function () {
-    return view('components.s');
-});
-Route::get('/test', function () {
-    return view('test');
-});
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Info
 
+//Info
 Route::prefix('info')->group(function () {
 
     Route::get('create', 'InfoController@create')->name('info.create');

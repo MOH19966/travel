@@ -14,13 +14,13 @@
     @stack('headScripts')
 
      <!-- Scripts add by me -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
-  -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -28,9 +28,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm border border-dark shadow">
+            <div class="container ">
+                <a class="navbar-brand text-danger m-0 p-0"  href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -38,22 +38,28 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+<!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
+                       <li >
+                            <img src="{{asset('photos/logo/logo.png')}}"
+                            alt="logo" width="150" height="80"
+                            class="m-0 p-0"  >
+                      </li>
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+<!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto text-danger">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-danger font-weight-bold	" href="{{ route('login') }}"> {{ __('دخول') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
 
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-success font-weight-bold big" href="{{ route('register') }}">{{ __('التسجيل') }}</a>
                                 </li>
                             @endif
                         @else
@@ -61,11 +67,14 @@
                            <!-- asset(curr_user()->info->college_card_image -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <!-- img by me-->
-                                                      <img  src="{{is_null(curr_user()->info->college_card_image)? 'https://i.pravatar.cc/35?u='.curr_user_id() : asset('storage/'.curr_user()->info->college_card_image) }}" alt="my photo"
-                                                       class="rounded-circle img-fluid" width="50" height="60">
+                                                      {{-- <img  src="{{is_null(curr_user()->info->college_card_image)?
+                                                       'https://i.pravatar.cc/35?u='.curr_user_id()
+                                                       : asset('storage/'.curr_user()->info->college_card_image) }}" alt="my photo"
+                                                       class="rounded-circle" width="40" height="40"> --}}
 
 
                                     {{ Auth::user()->name }} <span class="caret"></span>
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -92,11 +101,27 @@
         @include('flash-message')
 
         <main class="py-4">
+            {{-- <img src="{{asset('photos/logo/logo.png')}}" alt="logo"  width="500" height="500" > --}}
+
             {{$slot}}
+
         </main>
-    </div>
+</div>
 
 
+
+
+        <!-- Footer -->
+<footer class="page-footer bg-dark">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 text-light">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> made with love  by Mohammed AlMahmood</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 
 </body>

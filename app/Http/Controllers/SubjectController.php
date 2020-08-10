@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
@@ -22,7 +23,7 @@ class SubjectController extends Controller
           ]);
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
 
         /*
@@ -31,6 +32,11 @@ class SubjectController extends Controller
         and i define name for subject checkbox in thr front as
         name="subject[{{$s->id}}]" id="{{$s->id}}"
          */
+         if (is_null(request()->input('subject')))
+         {
+             $request->session()->flash('error', 'لم تقم بتحديد أي مواد');
+                return redirect()->route('sub.select');
+         }
         curr_user()->addSubject(request()->input('subject'));
         return redirect()
         ->route('InfoComplete');

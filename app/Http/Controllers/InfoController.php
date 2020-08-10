@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Info;
-use App\User;
-use App\State;
 use App\Area;
 use App\City;
-use App\Village;
-
 use App\College;
+use App\Events\EnrollTeacherNumber;
+use App\Info;
+use App\State;
 use App\University;
+use App\User;
+use App\Village;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Notifications\RateTeacher;
-use App\Events\EnrollTeacherNumber;
 use Illuminate\Support\Facades\Auth;
 
 class InfoController extends Controller
@@ -46,11 +44,10 @@ class InfoController extends Controller
                 'universities' => University::all(),
                 'colleges' => College::all(),
                 'years' => [1, 2, 3, 4, 5, 6, 7],
-                'states'=> State::all(),
-                'cities'=> City::all(),
-                'areas'=>Area::all(),
-                'villages'=>Village::all(),
-
+                'states' => State::all(),
+                'cities' => City::all(),
+                'areas' => Area::all(),
+                'villages' => Village::all(),
 
             ]);
     }
@@ -70,15 +67,16 @@ class InfoController extends Controller
             $s->info_completed = 1;
             $s->save();
 
-
             // curr_user()->info_completed=1; // to edit table field in users so rediect to home
         } else {
             info::Where('user_id', curr_user_id())->update($this->validatedAttributes());
         }
 
-       // dd( $request->all());
+        // dd( $request->all());
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with([
+            'message'=>'Info completed'
+        ]);;
 
     }
 
@@ -93,10 +91,9 @@ class InfoController extends Controller
         //
         $PI = Info::where('user_id', $id)->first();
 
-      
         $rating = User::findOrFail($id)->first()->averageRating;
 
-       return view('info.show', compact(['PI', 'rating']));
+        return view('info.show', compact(['PI', 'rating']));
     }
 
     /**
@@ -107,18 +104,18 @@ class InfoController extends Controller
      */
     public function edit($id)
     {
-       return view('info.edit',
-    [ // vars sent to view
-        'id' => curr_user(),
-        'universities' => University::all(),
-        'colleges' => College::all(),
-        'years' => [1, 2, 3, 4, 5, 6, 7],
-        'states'=> State::all(),
-        'cities'=> City::all(),
-        'areas'=>Area::all(),
-        'villages'=>Village::all(),
-        'info'=> Info::where('user_id', $id)->first(), // wrong
-    ]);
+        return view('info.edit',
+            [ // vars sent to view
+                'id' => curr_user(),
+                'universities' => University::all(),
+                'colleges' => College::all(),
+                'years' => [1, 2, 3, 4, 5, 6, 7],
+                'states' => State::all(),
+                'cities' => City::all(),
+                'areas' => Area::all(),
+                'villages' => Village::all(),
+                'info' => Info::where('user_id', $id)->first(), // wrong
+            ]);
 
     }
 
@@ -134,10 +131,9 @@ class InfoController extends Controller
         //
 
         //dd($request);
-            info::Where('user_id', curr_user_id())->update($this->validatedAttributes());
-                       //dd('ddd');
-                 return redirect()->route('info.profile', ['id' => $id]);
-
+        info::Where('user_id', curr_user_id())->update($this->validatedAttributes());
+        //dd('ddd');
+        return redirect()->route('info.profile', ['id' => $id]);
 
     }
 
@@ -162,7 +158,6 @@ class InfoController extends Controller
             'lname' => 'required |string',
             'gender' => 'required ',
 
-
             'state' => 'required',
             'area' => 'required',
             'village' => 'required', //nullable
@@ -170,9 +165,8 @@ class InfoController extends Controller
             'year' => 'required',
             'user_id' => 'exists:App\User,id',
 
-
-        ] );
-       // dd('dddd');
+        ]);
+        // dd('dddd');
 
     }
 
@@ -194,9 +188,9 @@ class InfoController extends Controller
         $user_id = request()->id;
         //dd( $user_id);
 
-        EnrollTeacherNumber::dispatch($teacher_id,$teacher_full_name ,$user_id);
+        EnrollTeacherNumber::dispatch($teacher_id, $teacher_full_name, $user_id);
 
-  //  /request()->user()->notify(new RateTeacher($teacher_id, $teacher_full_name));
+        //  /request()->user()->notify(new RateTeacher($teacher_id, $teacher_full_name));
 
     }
 
@@ -204,39 +198,36 @@ class InfoController extends Controller
     {
         return view('info.uploadImages');
 
-
     }
 
-     public function storeImages()
+    public function storeImages()
     {
 
-          // dd( request()->all()) ;
+         //dd( request()->personalPhoto) ;
         request()->validate([
 
-            'collegePhoto'=>'required|file|between:40,10000' ,
-            'personalPhoto'=>'required|file|between:40,10000',
+            'collegePhoto' => 'required|file|between:40,10000',
+            'personalPhoto' => 'required|file|between:40,10000',
 
         ]
 
-    );
-           $collegeCard= request('collegePhoto')->storeAs('CollegeCards', curr_user_id());
-           $personalPhoto = request('personalPhoto')->storeAs('PersonalPhotos',curr_user_id());
+        );
+        $collegeCard = request('collegePhoto')->storeAs('CollegeCards', curr_user_id());
+        $personalPhoto = request('personalPhoto')->storeAs('PersonalPhotos', curr_user_id());
 
-           $info=Info::Where('user_id',curr_user_id())->first();
-           // dd($info);
-           if(is_null($info->college_card_image))
-           {
-               $info->college_card_image=$collegeCard;
-           }
+        $info = Info::Where('user_id', curr_user_id())->first();
+        // dd($info);
+        if (is_null($info->college_card_image)) {
+            $info->college_card_image = $collegeCard;
+        }
 
-           if(is_null($info->user_image))
-           {
-               $info->user_image = $personalPhoto;
-           }
-           $info->save();
+        if (is_null($info->user_image)) {
+            $info->user_image = $personalPhoto;
+        }
+        $info->save();
 
-         // dd($info);
+        // dd($info);
 
-          return redirect()->route('home');
+        return redirect()->route('home');
     }
 }

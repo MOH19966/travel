@@ -76,16 +76,16 @@ class User extends \TCG\Voyager\Models\User
 
     // }
 
-     public function getInfoCompletedAttribute()
-     {
+    //  public function getInfoCompletedAttribute()
+    //  {
 
-        return $this->info_completed;
-     }
-     public function setInfoCompletedAttribute($x)
-     {
+    //     return $this->info_completed;
+    //  }
+    //  public function setInfoCompletedAttribute($x)
+    //  {
 
-        return $this->info_completed=$x;
-     }
+    //     return $this->info_completed=$x;
+    //  }
 
 
 }
