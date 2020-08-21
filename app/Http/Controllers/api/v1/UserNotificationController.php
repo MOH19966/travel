@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\api\v1;
-;
 
 use willvincent\Rateable\Rating;
  use App\User;
+use Illuminate\Http\Request;
+
 
 class UserNotificationController extends Controller
 {
     //
 
-    public function show()
+    public function show(Request $request)
     {
         # code...
-        return curr_user_id();
+
         $x = curr_user()->notifications;
         return response( [
 
@@ -25,6 +26,9 @@ class UserNotificationController extends Controller
 
     public function rate()
     {
+
+
+
         //1- create rating instance and give it ratinf and user_id
         $rating = new Rating;
 
@@ -37,7 +41,11 @@ class UserNotificationController extends Controller
         $teacher->ratings()->save($rating);
 
 
-        //dd(request()->rate);
+        return response(
+            [
+                'message'=>'thank you for rating'
+            ]
+            );
 
     }
 }

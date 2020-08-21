@@ -16,7 +16,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        // give me teachers that can teach what i hace entered
          $u=curr_user();
          $TeachersNames=$u->giveMeTeachers(request()->subject); // i send subj id to function
 
@@ -32,15 +32,13 @@ class TeacherController extends Controller
     {    $g='null';
         //get all subjects in the college of this user related to his year and under
         $x = curr_user()->suggestedSubjects(curr_user()->info);
-        $y=College::all();
-        $z = University::all();
+
        // dd($z);
 
 
         return response ( [
             'subjects'=>$x
-            ,'colleges'=>$y
-            ,'universities'=>$z
+            ,
             ]);
     }
 

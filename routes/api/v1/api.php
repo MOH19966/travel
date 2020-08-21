@@ -47,6 +47,11 @@ Route::middleware('auth:api')->prefix('info')->group(function () {
     //profile
     Route::get('profile/{id}', 'api\v1\infoController@show')->name('info.profile');
     Route::get('enroll', 'api\v1\infoController@enroll')->name('enroll');
+    // notification
+    Route::get('notifications', 'api\v1\UserNotificationController@show')->name('notification');
+    //rate
+    Route::post('notifications', 'api\v1\UserNotificationController@rate')->name('rateTeacher');
+
 
     //complete image info after selection sybjects
     Route::get('complete', 'api\v1\infoController@uploadImages')->name('InfoComplete');
@@ -73,6 +78,13 @@ Route::middleware('auth:api')->prefix('teacher')->group(function () {
 });
 
 
-Route::get('notifications', 'api\v1\UserNotificationController@show')->name('notification');
-Route::post('notifications', 'api\v1\UserNotificationController@rate')->name('rateTeacher');
+
+Route::middleware('auth:api')->prefix('data')->group(function () {
+//request  a teacher for   a subject
+    Route::get('alluniversities', 'api\v1\InfoController@alluniversities');
+    Route::post('collegesInThisUniversity', 'api\v1\InfoController@collegesInThisUniversity');
+    Route::post('subjectsInThiscollege', 'api\v1\InfoController@subjectsInThiscollege');
+
+});
+
 

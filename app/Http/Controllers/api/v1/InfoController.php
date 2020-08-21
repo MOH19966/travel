@@ -11,6 +11,7 @@ use App\State;
 use App\University;
 use App\User;
 use App\Village;
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -67,7 +68,6 @@ class InfoController extends Controller
             $s = User::find(curr_user_id());
             $s->info_completed = 1;
             $s->save();
-           
 
         }
         // curr_user()->info_completed=1; // to edit table field in users so rediect to home
@@ -220,21 +220,15 @@ class InfoController extends Controller
 
     public function storeImages()
     {
+        //  dd(request()->personalPhoto);
 
-
-    //  dd(request()->personalPhoto);
-
-      request()->validate([
-     'collegePhoto' => 'required|file',
-    'personalPhoto' => 'required|file',
-]);
-
-
-
+        request()->validate([
+            'collegePhoto' => 'required|file',
+            'personalPhoto' => 'required|file',
+        ]);
 
         $collegeCard = request('collegePhoto')->storeAs('CollegeCards', curr_user_id());
         $personalPhoto = request('personalPhoto')->storeAs('PersonalPhotos', curr_user_id());
-
 
         $info = Info::Where('user_id', curr_user_id())->first();
         // dd($info);
@@ -247,6 +241,38 @@ class InfoController extends Controller
         }
         $info->save();
 
-        return  redirect()->route('home');
+        return redirect()->route('home');
     }
+
+     public function alluniversities()
+    {
+        # code...
+
+            return  response ([
+                    "universities"=>University::all()
+
+
+            ]);
+    }
+
+    //take univ_id
+    public function collegesInThisUniversity()
+    {
+        # code...
+               // dd('fff');
+            return College::Where('university_id','=',request()->university_id)->get();
+
+    }
+
+
+    public function subjectsInThiscollege()
+    {
+        # code...
+
+return Subject::Where('college_id', '=', request()->college_id)->get();
+
+    }
+
+
+
 }

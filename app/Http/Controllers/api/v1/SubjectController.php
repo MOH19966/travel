@@ -36,8 +36,13 @@ class SubjectController extends Controller
          */
         curr_user()->addSubject(request()->input('subject'));
 
-        return redirect()
-            ->route('InfoComplete');
+        return response(
+            [
+                'message' =>' subjects where added'
+            ]
+        );
+        // redirect()
+        //     ->route('InfoComplete');
 
     }
 }
