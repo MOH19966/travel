@@ -11,6 +11,7 @@ class SubjectController extends Controller
     public function create()
     {
 
+
         $u = curr_user()->info;
         //return all subjects that the user can teach according to his years
         $subjects = curr_user()->suggestedSubjects($u);

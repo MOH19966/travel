@@ -67,7 +67,7 @@ class InfoController extends Controller
             $s = User::find(curr_user_id());
             $s->info_completed = 1;
             $s->save();
-            dd('sucesssss');
+           
 
         }
         // curr_user()->info_completed=1; // to edit table field in users so rediect to home
