@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 
  */
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-
-Request-With');
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+// header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-
+// Request-With');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
