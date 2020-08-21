@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\api\v1;
-;
-
 
 use App\Material;
-use App\MaterialTrait;
 use App\School;
-use App\user;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SchoolController extends Controller
 {
@@ -16,32 +13,36 @@ class SchoolController extends Controller
      * @param \App\Http\Requests\SchoolStoreRequest $request
      * @return \Illuminate\Http\Response
      */
+
+     //save materials to user materials
     public function save(Request $request)
     {
         curr_user()->addMaterial(request()->input('material'));
 
-
-
-      return   redirect()->route('school.suggest');
+        return response([
+            'message' => 'materials where added',
+        ]);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+    //return al materials
     public function select(Request $request)
     {
         $materials = Material::all();
 
-        return view('school.selectMaterials', compact('materials'));
+        return response([
+            'materials' => Material::all(),
+
+        ]);
     }
-
-
-
+    //return schools
     public function index()
     {
         $shortages = curr_user()->suggestedSchools();
 
-        return view('school.suggestedSchools',compact('shortages'));
+        return response([
+            'shortages' => curr_user()->suggestedSchools(),
+
+        ]);
+
     }
 }

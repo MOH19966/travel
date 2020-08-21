@@ -88,3 +88,11 @@ Route::middleware('auth:api')->prefix('data')->group(function () {
 });
 
 
+//to choose materials to teach
+Route::middleware('auth:api')->prefix('schools')->group(function () {
+    Route::get('material/select', 'api\v1\SchoolController@select');
+    Route::post('material/select', 'api\v1\SchoolController@save');
+    Route::get('schools', 'api\v1\SchoolController@index');
+});
+
+
