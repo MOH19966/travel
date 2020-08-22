@@ -19,7 +19,18 @@ class TeacherController extends Controller
         // give me teachers that can teach what i hace entered
          $u=curr_user();
          $TeachersNames=$u->giveMeTeachers(request()->subject); // i send subj id to function
+        //loop over every student and give me his rating
+         foreach ($TeachersNames as $Teacher)
+          {
+              $i=0;
+            $rating= User::findOrFail($Teacher->user_id)->first()->averageRating;
+            $Teacher->rate= $rating ;
 
+            //dd($TeachersNames);
+
+             # code...
+         }
+         //dd($TeachersNames);
          return response([
             'TeachersNames'=> $TeachersNames
             ]);
