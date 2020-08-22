@@ -243,7 +243,7 @@ class InfoController extends Controller
 
         return redirect()->route('home');
     }
-
+    
      public function alluniversities()
     {
         # code...

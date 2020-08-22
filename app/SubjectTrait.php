@@ -89,7 +89,7 @@ trait SubjectTrait
         $z=$this->teachersRelatedIdes($subject_id);
         // i dont use pluck cause in t brings one column
         $u = Info::whereIn('user_id',$z )
-            ->select('user_id','fname','lname')->get()
+            ->select('user_id','fname','lname','user_image' ,'college')->get()
             ->sortBy('user_id');// here is add sort by rating
 
 

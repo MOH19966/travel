@@ -82,3 +82,6 @@ Route::middleware('auth:api')->prefix('schools')->group(function () {
     Route::post('material/select', 'api\v1\SchoolController@save');
     Route::get('schools', 'api\v1\SchoolController@index');
 });
+
+
+Route::middleware('auth:api')->resource('shortage', 'api\v1\ShortageController');

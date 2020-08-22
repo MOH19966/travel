@@ -35,7 +35,7 @@ class ShortageController extends Controller
         $materials = Material::select('id', 'name')->get();
         $grades = Grade::select('id', 'name')->get();
 
-        return view('shortage.create',
+        return response(
             [
                 'schools' => $schools,
                 'materials' => $materials,
