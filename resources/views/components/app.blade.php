@@ -67,7 +67,7 @@
                            <!-- asset(curr_user()->info->college_card_image -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <!-- img by me-->
-                                                      {{-- <img  src="{{is_null(curr_user()->info->college_card_image)?
+                                                       {{-- <img  src="{{is_null(curr_user()->info->college_card_image)?
                                                        'https://i.pravatar.cc/35?u='.curr_user_id()
                                                        : asset('storage/'.curr_user()->info->college_card_image) }}" alt="my photo"
                                                        class="rounded-circle" width="40" height="40"> --}}

@@ -99,5 +99,22 @@ trait SubjectTrait
     }
 
 
+    public function checkIfRequestedSubjectChoosenByTheUSerToTeach($subject_id)
+    {
+        //add subject_id to requestes_subjects table
+        $this->addReqSubject($subject_id);
+        $z=$this->teachersRelatedIdes($subject_id);
+        // i dont use pluck cause in t brings one column
+        $u = Info::whereIn('user_id',$z )
+            ->select('user_id')->get();
+    // here is add sort by rating
+
+
+          // dd($u);
+        return $u;
+
+    }
+
+
 
 }

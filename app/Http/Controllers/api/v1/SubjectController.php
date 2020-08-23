@@ -28,8 +28,9 @@ class SubjectController extends Controller
 
 
 
+     
         /*
-        add subject : funstion take an array of subject id
+        add subject : function take an array of subject id
         and linked it to user through table "selected_users
         and i define name for subject checkbox in thr front as
         name="subject[{{$s->id}}]" id="{{$s->id}}"

@@ -21,7 +21,12 @@ class ShortageController extends Controller
         //dd("ddd");
         $shortages = Shortage::all();
 
-        return view('shortage.index', compact('shortages'));
+        return response(
+    [
+           'shortages'=> $shortages
+
+    ]);
+
     }
 
     /**
@@ -30,7 +35,7 @@ class ShortageController extends Controller
      */
     public function create(Request $request)
     {
-
+        //d('ddd');
         $schools = School::all()->pluck('name');
         $materials = Material::select('id', 'name')->get();
         $grades = Grade::select('id', 'name')->get();
@@ -87,10 +92,10 @@ class ShortageController extends Controller
             ]);
         //  dd('dd');
 
-        $request->session()->flash('shortage.id', $shortage->id);
-        $request->session()->flash('success', 'عشت يا أبو علي');
+        // $request->session()->flash('shortage.id', $shortage->id);
+        // $request->session()->flash('success', 'عشت يا أبو علي');
 
-        return redirect()->route('shortage.index');
+        return 1;
     }
 
     /**
@@ -100,7 +105,9 @@ class ShortageController extends Controller
      */
     public function show(Request $request, Shortage $shortage)
     {
-        return view('shortage.show', compact('shortage'));
+        return response([
+            'shortage' => $shortage,
+        ]);
     }
 
     /**

@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         return response([
 
-            'user' => Auth::user(),
+            'user' =>curr_user()->info ,
             'access_token' => $accessToken,
         ]);
 

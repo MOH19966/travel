@@ -84,4 +84,4 @@ Route::middleware('auth:api')->prefix('schools')->group(function () {
 });
 
 
-Route::middleware('auth:api')->resource('shortage', 'api\v1\ShortageController');
+Route::resource('shortage', 'api\v1\ShortageController');
