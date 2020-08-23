@@ -21,6 +21,8 @@ class SchoolController extends Controller
 
         return response([
             'message' => 'materials where added',
+            'shortages' => curr_user()->suggestedSchools(),
+
         ]);
     }
 
