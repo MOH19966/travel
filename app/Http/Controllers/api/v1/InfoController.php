@@ -80,7 +80,7 @@ class InfoController extends Controller
 
         // dd( $request->all());
 
-        return redirect()->route('home')->with([
+        return response([
             'message' => 'Info completed',
         ]);
 
@@ -241,9 +241,9 @@ class InfoController extends Controller
         }
         $info->save();
 
-        return redirect()->route('home');
+         return response(['message'=>'photos stored']);
     }
-    
+
      public function alluniversities()
     {
         # code...
