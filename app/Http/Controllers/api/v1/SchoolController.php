@@ -18,7 +18,7 @@ class SchoolController extends Controller
     public function save(Request $request)
     {
         curr_user()->addMaterial(request()->input('material'));
-
+        //dd(curr_user()->suggestedSchools());
         return response([
             'message' => 'materials where added',
             'shortages' => curr_user()->suggestedSchools(),

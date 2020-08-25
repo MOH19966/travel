@@ -54,7 +54,7 @@ public function suggestedSchools()
 
     $z = DB::table('shortages')
     ->join('schools','schools.id','=','shortages.school_id')
-    ->select('shortages.school_name', 'shortages.material_name','shortages.grade_name')
+    ->select('shortages.school_name', 'shortages.material_name','shortages.grade_name','shortages.houres','schools.city', 'schools.area')
 
     ->where('schools.city', $user_city)
     ->whereIn('shortages.material_id',$user_selected_materials)
