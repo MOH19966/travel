@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-
- Route::get('/{route?}', function () {
-     return view('index');
+Route::get('/shortage/{route?}', function () {
+    return view('shortage');
 });
+
+Route::get('/{route?}', function () {
+    return view('index');
+});
+
 //faded with smoke
 // Route::get('/test', function () {
 //     return view('test');

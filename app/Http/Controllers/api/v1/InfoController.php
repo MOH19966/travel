@@ -109,7 +109,7 @@ class InfoController extends Controller
         );
 
     }
-    
+
     public function edit($id)
     {
         return response(
@@ -168,7 +168,7 @@ class InfoController extends Controller
 
             'state' => 'required',
             'area' => 'required',
-            'village' => 'required', //nullable
+            'village' => '', //nullable
             'city' => 'required',
             'year' => 'required',
             'user_id' => 'exists:App\User,id',
