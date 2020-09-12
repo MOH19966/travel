@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         # code...
-        dd('ff');
+        //dd('ff');
 
         $attempt = $request->validate(
             [

@@ -23,80 +23,80 @@ Route::get('/{route?}', function () {
 
 
 //faded with smoke
-// Route::get('/test', function () {
-//     return view('test');
-// });
-// Route::get('/test', function () {
-//     return view('test');
-// });
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/test', function () {
+    return view('test');
+});
 
-// //ANIMATED BG
-// Route::get('/test1', function () {
-//     return view('test1');
-// });
+//ANIMATED BG
+Route::get('/test1', function () {
+    return view('test1');
+});
 
-//Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
+Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
-// //Info
-// Route::prefix('info')->group(function () {
+//Info
+Route::prefix('info')->group(function () {
 
-//     Route::get('create', 'InfoController@create')->name('info.create');
-//     Route::post('store', 'InfoController@store')->name('info.store');
-//     //edit profile
-//     Route::get('{id}/edit', 'InfoController@edit')->name('info.edit');
-//     Route::patch('{id}/update', 'InfoController@update')->name('info.update');
-//     //profile
-//     Route::get('profile/{id}', 'infoController@show')->name('info.profile');
-//     Route::get('enroll', 'infoController@enroll')->name('enroll');
+    Route::get('create', 'InfoController@create')->name('info.create');
+    Route::post('store', 'InfoController@store')->name('info.store');
+    //edit profile
+    Route::get('{id}/edit', 'InfoController@edit')->name('info.edit');
+    Route::patch('{id}/update', 'InfoController@update')->name('info.update');
+    //profile
+    Route::get('profile/{id}', 'infoController@show')->name('info.profile');
+    Route::get('enroll', 'infoController@enroll')->name('enroll');
 
-//     //complete image info after selection sybjects
-//     Route::get('complete', 'infoController@uploadImages')->name('InfoComplete');
-//     Route::post('complete', 'infoController@storeImages')->name('InfoCompleted');
+    //complete image info after selection sybjects
+    Route::get('complete', 'infoController@uploadImages')->name('InfoComplete');
+    Route::post('complete', 'infoController@storeImages')->name('InfoCompleted');
 
-// });
+});
 
-// Route::prefix('subject')->group(function () {
-// //select subject to teach
-//     //athoriazation ://can select subjects=>(info complete)
-//     Route::get('select', 'SubjectController@create')->name('sub.select');
-//     Route::post('select', 'SubjectController@store')->name('sub.store');
-// });
+Route::prefix('subject')->group(function () {
+//select subject to teach
+    //athoriazation ://can select subjects=>(info complete)
+    Route::get('select', 'SubjectController@create')->name('sub.select');
+    Route::post('select', 'SubjectController@store')->name('sub.store');
+});
 
-// Route::prefix('teacher')->group(function () {
-// //request  a teacher for   a subject
-//     Route::get('request', 'TeacherController@create')->name('sub.request');
-//     Route::post('request', 'TeacherController@index')->name('sub.index');
+Route::prefix('teacher')->group(function () {
+//request  a teacher for   a subject
+    Route::get('request', 'TeacherController@create')->name('sub.request');
+    Route::post('request', 'TeacherController@index')->name('sub.index');
 
-// });
+});
 
-// Route::get('notifications', 'UserNotificationController@show')->name('notification');
-// Route::post('notifications', 'UserNotificationController@rate')->name('rateTeacher');
+Route::get('notifications', 'UserNotificationController@show')->name('notification');
+Route::post('notifications', 'UserNotificationController@rate')->name('rateTeacher');
 
-// Route::resource('shortage', 'ShortageController');
+Route::resource('shortage', 'ShortageController');
 
-// //
-// //to choose materials to teach
-// Route::prefix('schools')->group(function () {
-//     Route::get('material/select', 'SchoolController@select')->name('material.select');
-//     Route::post('material/select', 'SchoolController@save')->name('material.save');
-//     Route::get('schools', 'SchoolController@index')->name('school.suggest');
-// });
+//
+//to choose materials to teach
+Route::prefix('schools')->group(function () {
+    Route::get('material/select', 'SchoolController@select')->name('material.select');
+    Route::post('material/select', 'SchoolController@save')->name('material.save');
+    Route::get('schools', 'SchoolController@index')->name('school.suggest');
+});
 
-// //post commetn
-// Route::resource('post', 'PostController');
-// Route::get('post/choose-best-comment', 'PostController@chooseBestComment');
-// Route::resource('comment', 'CommentController');
+//post commetn
+Route::resource('post', 'PostController');
+Route::get('post/choose-best-comment', 'PostController@chooseBestComment');
+Route::resource('comment', 'CommentController');
 
-// //admin panel routes
+//admin panel routes
 
-// //for excel
-// Route::get('i', 'TestController@importExport');
-// Route::post('import', 'TestController@import');
-// Route::get('export', 'TestController@export');
+//for excel
+Route::get('i', 'TestController@importExport');
+Route::post('import', 'TestController@import');
+Route::get('export', 'TestController@export');

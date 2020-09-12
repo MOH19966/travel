@@ -16,22 +16,23 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         //get the the cached num
-        $v = Cache::get($request->phone_number);
-        $c = strval(Str::of($v)->after(',')); #validation_code
-        $p = Str::of($v)->before(',');
+        // $v = Cache::get($request->phone_number);
+        // $c = strval(Str::of($v)->after(',')); #validation_code
+        // $p = Str::of($v)->before(',');
 
-        $code = $request->code;
-        //  dd($c);
-        if (!$code === $c) {
-            return 'code is not matched';
-        } //
+        // $code = $request->code;
+        // //  dd($c);
+        // if (!$code === $c) {
+        //     return 'code is not matched';
+        // } //
 
         $user = User::create([
             //'name' => request('name'),
             // 'email' => request('email'),
             'phone_number' => request('phone_number'),
-            'password' => Hash::make($p),
-        ]);
+            //'password' => Hash::make($p),
+          'password' => Hash::make(request('password')),
+            ]);
         //get_user_id
         $u = User::findOrFail($user->id);
 

@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 
 // });
+Route::get('/test', function () {
+    return view('test');
+});
 
 //api/v1/Auth/user/>>
 Route::prefix('user')->group(function () {
