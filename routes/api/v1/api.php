@@ -18,13 +18,15 @@ use Illuminate\Support\Facades\Route;
 // header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-
 // Request-With');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
 
-});
+// });
 
 //api/v1/Auth/user/>>
 Route::prefix('user')->group(function () {
+    Route::post('validate', 'api\v1\auth\RegisterController@validateNumber');
+
     //regiser
     Route::post('register', 'api\v1\auth\RegisterController@register');
     //login
@@ -36,7 +38,7 @@ Route::prefix('user')->group(function () {
 Route::middleware('auth:api')->prefix('info')->group(function () {
 
     Route::get('/create', 'api\v1\InfoController@create')->name('info.create');
-    Route::post('/store', 'api\v1\InfoController@store')->name('info.store');
+    Route::post('/store', 'api\v1\InfoController@store');
     //edit profile
     Route::get('{id}/edit', 'api\v1\InfoController@edit')->name('info.edit');
     Route::patch('{id}/update', 'api\v1\InfoController@update')->name('info.update');
@@ -85,3 +87,6 @@ Route::middleware('auth:api')->prefix('schools')->group(function () {
 
 
 Route::resource('shortage', 'api\v1\ShortageController');
+
+
+//Route::group(['prefix' => 'admin'], function () {Voyager::routes();});

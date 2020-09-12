@@ -59,7 +59,7 @@ class InfoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd( $request->all());
+         dd( $request->all());
         // if this user not complete his info then cerate info else update existing
         if (curr_user()->info_completed === 0) {
             info::create($this->validatedAttributes());

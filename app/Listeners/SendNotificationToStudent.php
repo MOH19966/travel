@@ -31,10 +31,13 @@ class SendNotificationToStudent
     public function handle(EnrollTeacherNumber $event)
     {
 
-
-
+        //delay
+        $when = now()->addMinutes(10);
         request()->user()
-        ->notify(new RateTeacher
-        ($event->teacher_id,$event->teacher_full_name , $event->user_id));
+        ->notify(
+            (new RateTeacher($event->teacher_id,
+                                $event->teacher_full_name ,
+                                $event->user_id)
+                                )->delay($when));
     }
 }

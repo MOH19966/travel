@@ -112,7 +112,11 @@
 
         {{-- </main> --}}
 
-
+        <a name="" id="" class="btn btn-primary"
+         href="https://services.mtnsyr.com:7443/general/MTNSERVICES/ConcatenatedSender.aspx?User=hca111&Pass=nrae410&From=Teach-Learn&Gsm=9639xxxxxxxx;9639xxxxxxxx;9639xxxxxxxx&Msg=06270628062a&Lang=0"
+          role="button">
+         MTN
+         </a>
 
 
 

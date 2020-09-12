@@ -21,6 +21,7 @@ Route::get('/{route?}', function () {
     return view('index');
 });
 
+
 //faded with smoke
 // Route::get('/test', function () {
 //     return view('test');
@@ -34,7 +35,7 @@ Route::get('/{route?}', function () {
 //     return view('test1');
 // });
 
-// Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
+//Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
 
 // Route::get('/', function () {
 //     return view('welcome');
