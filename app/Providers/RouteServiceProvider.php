@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Cors;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -72,9 +72,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        //i modeify it to 
+        //i modeify it to
         Route::prefix('api/v1')
-            ->middleware('api')
+            ->middleware(['api','cors'])
             ->namespace($this->namespace)
             ->group(base_path('routes/api/v1/api.php'));
     }

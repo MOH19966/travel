@@ -21,9 +21,9 @@ class ImportSchools implements ToModel
               'phone'                  => $row[3],
               'address'                => $row[4],
               'state_id'               => $row[5],
-              'city'                   => $row[6],
-              'area'                   => $row[7],
-              'village'                => $row[8],
+              'city'                   => @$row[6],
+              'area'                   => @$row[7],
+              //'village'                => $row[8],
 
             //
         ]);

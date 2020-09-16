@@ -59,11 +59,30 @@ class InfoController extends Controller
     {
        //  dd( 'ff');
         // if this user not complete his info then cerate info else update existing
-        // dd(curr_user_id());
+         //dd(curr_user_id());
+       // dd($request->all());
         if (curr_user()->info_completed === 0) {
             //dd('111111');
+            info::create([
+            'university' => $request->university, // |unique:posts|max:255
+            'college' => $request->college, //exists:college,name
+            'fname' => $request->fname ,
+            'lname' => $request->lname,
+            'gender' => $request->gender,
 
-            info::create($this->validatedAttributes());
+            'state' =>$request->state ,
+            'area' => $request->area,
+            'village' => 'لحقلة', //nullable
+            'city' => $request->city ,
+            'year' =>$request->year ,
+            'user_id' =>$request->user_id,
+
+            ]);
+
+
+
+
+           // info::create($this->validatedAttributes());
             //mark it AS INFO COMPLETED
             $s = User::find(curr_user_id());
             $s->info_completed = 1;
@@ -138,7 +157,7 @@ class InfoController extends Controller
     {
         //
 
-        //  dd(curr_user_id()));
+        //  dd
         info::Where('user_id', curr_user_id())->update($this->validatedAttributes());
         //dd('ddd');
         return redirect()->route('info.profile', ['id' => $id]);
@@ -184,6 +203,7 @@ class InfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function enroll()
     {
         //1- send message to user  cpontains the selected user number

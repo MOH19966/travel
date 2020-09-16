@@ -47,6 +47,8 @@ class User extends \TCG\Voyager\Models\User
 
         return $this->hasOne(Info::class);
     }
+  
+
 
    // get all roles which the user have
     // public function roles()

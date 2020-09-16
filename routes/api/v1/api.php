@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,19 +42,19 @@ Route::middleware('auth:api')->prefix('info')->group(function () {
     Route::get('/create', 'api\v1\InfoController@create')->name('info.create');
     Route::post('/store', 'api\v1\InfoController@store');
     //edit profile
-    Route::get('{id}/edit', 'api\v1\InfoController@edit')->name('info.edit');
-    Route::patch('{id}/update', 'api\v1\InfoController@update')->name('info.update');
+    // Route::get('{id}/edit', 'api\v1\InfoController@edit')->name('info.edit');
+    // Route::patch('{id}/update', 'api\v1\InfoController@update')->name('info.update');
     //profile
-    Route::get('profile/{id}', 'api\v1\infoController@show')->name('info.profile');
-    Route::get('enroll', 'api\v1\infoController@enroll')->name('enroll');
+    Route::get('profile/{id}', 'api\v1\InfoController@show')->name('info.profile');
+    Route::get('enroll', 'api\v1\InfoController@enroll')->name('enroll');
     // notification
     Route::get('notifications', 'api\v1\UserNotificationController@show')->name('notification');
     //rate
     Route::post('notifications', 'api\v1\UserNotificationController@rate')->name('rateTeacher');
 
     //complete image info after selection sybjects
-    Route::get('complete', 'api\v1\infoController@uploadImages')->name('InfoComplete');
-    Route::post('complete', 'api\v1\infoController@storeImages')->name('InfoCompleted');
+    Route::get('complete', 'api\v1\InfoController@uploadImages')->name('InfoComplete');
+    Route::post('complete', 'api\v1\InfoController@storeImages')->name('InfoCompleted');
 
 });
 
@@ -88,8 +87,6 @@ Route::middleware('auth:api')->prefix('schools')->group(function () {
     Route::get('schools', 'api\v1\SchoolController@index');
 });
 
-
 Route::resource('shortage', 'api\v1\ShortageController');
-
 
 //Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
