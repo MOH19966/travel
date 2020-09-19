@@ -1,7 +1,10 @@
 <?php
 //DB::listen(fuction($query){ var_dump($query->sql , $query->bindings)});
 
+
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +18,23 @@ use Illuminate\Support\Facades\Route;
  */
 Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
 
-Route::get('/shortage/{route?}', function () {
-    return view('shortage');
+// Route::get('/shortage/{route?}', function () {
+//     return view('shortage');
+// });
+Route::get('ss/{id}', function ($id) {
+
+    $url = asset('storage/PersonalPhotos/'.$id.'.png');
+   return $url;
+
 });
+
 
 Route::get('/{route?}', function () {
     return view('index');
 });
 
 
-// //faded with smoke
-// Route::get('/test', function () {
-//     return view('test');
-// });
+
 // Route::get('/test', function () {
 //     return view('test');
 // });

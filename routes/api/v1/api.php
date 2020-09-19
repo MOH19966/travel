@@ -1,5 +1,6 @@
 <?php
 
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 
 // });
+
 Route::get('/test', function () {
     return view('test');
 });
@@ -89,4 +91,4 @@ Route::middleware('auth:api')->prefix('schools')->group(function () {
 
 Route::resource('shortage', 'api\v1\ShortageController');
 
-//Route::group(['prefix' => 'admin'], function () {Voyager::routes();});
+Route::group(['prefix' => 'admin'], function () {Voyager::routes();});

@@ -242,8 +242,11 @@ class InfoController extends Controller
             'personalPhoto' => 'required|file',
         ]);
 
+
         $collegeCard = request('collegePhoto')->storeAs('CollegeCards', curr_user_id());
         $personalPhoto = request('personalPhoto')->storeAs('PersonalPhotos', curr_user_id());
+
+        request('personalPhoto')->move(public_path('/storage/PersonalPhotos/'), curr_user_id());
 
         $info = Info::Where('user_id', curr_user_id())->first();
         // dd($info);
